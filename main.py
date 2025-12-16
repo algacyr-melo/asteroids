@@ -7,7 +7,7 @@ from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
-from logger import log_state
+from logger import log_state, log_event
 
 
 def main():
@@ -40,11 +40,13 @@ def main():
         updatable.update(dt)
         for asteroid in asteroids:
             if asteroid.collides_with(player):
+                log_event("player_hit")
                 print("Game Over!")
                 sys.exit()
 
             for shot in shots:
                 if asteroid.collides_with(shot):
+                    log_event("asteroid_shot")
                     shot.kill()
                     asteroid.split()
 

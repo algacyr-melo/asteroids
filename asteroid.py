@@ -4,6 +4,7 @@ import random
 
 from constants import ASTEROID_MIN_RADIUS
 from circleshape import CircleShape
+from logger import log_event
 
 
 class Asteroid(CircleShape):
@@ -20,6 +21,7 @@ class Asteroid(CircleShape):
         self.kill()
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
+        log_event("asteroid_split")
 
         # randomize the angle of the split
         rand_angle = random.uniform(20, 50)
